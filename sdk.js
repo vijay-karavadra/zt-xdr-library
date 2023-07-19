@@ -43,12 +43,7 @@ const SDK = {
             hostname: window.location.hostname,
             pathname: window.location.pathname
         };
-       
-        debugger;
-
-
         var data = JSON.stringify(browserDetails);
-
         console.log(browserDetails)
 
         $.ajax({
