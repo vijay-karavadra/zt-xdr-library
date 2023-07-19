@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sample Page</title>
+</head>
+<body>
+  <h1>Welcome to Sample Page</h1>
+<br>
+
+ 
+
+  <div id="demo">
+    <button type="button" onclick="loadXMLDoc()">Change Content</button>
+    </div>
+
+  <script>
+    // Track page name
+    const pageName = document.title;
+    // Send pageName to your server or perform other actions
+
+    // Capture click events
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      const clickData = {
+        targetId: target.id,
+        targetClass: target.className,
+        timestamp: Date.now()
+      };
+      // Send clickData to your server or perform other actions
+    });
+
+
+    function loadXMLDoc() {
+      localStorage.setItem("count", 0);
+        try{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "xmlhttp_info.txt", true);
+  xhttp.send();
+}catch(ex)
+{
+    
+}
+}
+
+  </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+<script src="sdk.js"></script>
+
+</body>
+</html>
