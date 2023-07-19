@@ -52,7 +52,7 @@ const SDK = {
         console.log(browserDetails)
 
         $.ajax({
-            url: 'https://localhost:7059/SDKLogs',
+            url: 'http://137.135.102.227:2027/SDKLogs',
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
@@ -124,10 +124,10 @@ const SDK = {
 
                     var tempcount = localStorage.getItem("count");
 
-                    if (xhrData.url !== "https://localhost:7059/SDKLogs") {
+                    if (xhrData.url !== "http://137.135.102.227:2027/SDKLogs") {
 
                         $.ajax({
-                            url: 'https://localhost:7059/SDKLogs',
+                            url: 'http://137.135.102.227:2027/SDKLogs',
                             type: 'POST',
                             data: JSON.stringify(JSON.stringify(xhrData)),
                             contentType: 'application/json',
