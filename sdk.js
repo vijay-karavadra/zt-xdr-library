@@ -14,7 +14,8 @@ const SDK = {
         // Extract the id parameter from the src attribute
         var src = scriptElement.src;
         var url = new URL(src);
-        debugger;
+       console.log(url)
+       console.log(src)
       
     },
 
