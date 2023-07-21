@@ -1,24 +1,30 @@
 // SDK.js
 
 var count = 0;
-var hostUrl="https://zt-central-vm.zta-gateway.com/SDKLogs";
+var hostUrl = "https://zt-central-vm.zta-gateway.com/SDKLogs";
 var ipurl = "https://api64.ipify.org?format=json"
 const SDK = {
-
     init() {
         this.getIP();
+        this.getAppKey();
         this.collectBrowserDetails();
         this.interceptXHRRequests();
 
-        var scriptElement = document.currentScript;
-        // Extract the id parameter from the src attribute
-        var src = scriptElement.src;
-        var url = new URL(src);
-       console.log(url)
-       console.log(src)
-      
+
     },
 
+    getAppKey() {
+        try {
+            var scriptElement = document.currentScript;
+            var src = scriptElement.src;
+            var url = new URL(src);
+            localStorage.setItem("Appkey", url.search.split('=')[1]);
+        }
+        catch (exception) {
+            console.log(exception);
+            localStorage.setItem("Appkey", "");
+        }
+    },
     getIP() {
         fetch(ipurl)
             .then(response => response.json())
@@ -37,11 +43,12 @@ const SDK = {
             browserVersion: navigator.appVersion,
             remoteIpAddress: localStorage.getItem("ip"),
             timestamp: Date.now(),
-            url: window.location.host == ""? window.location.href: window.location.host,
+            url: window.location.host == "" ? window.location.href : window.location.host,
             hostname: window.location.hostname,
-            pathname: window.location.pathname
+            pathname: window.location.pathname,
+            appKey: localStorage.getItem("Appkey")
         };
-        
+
         var data = JSON.stringify(browserDetails);
         var xhr = new XMLHttpRequest();
         xhr.open('POST', hostUrl, true);
@@ -73,10 +80,17 @@ const SDK = {
                     title: document.title,
                     method: method,
                     remoteIpAddress: localStorage.getItem("ip"),
-                    url: url,
+                    url: window.location.host == "" ? window.location.href : window.location.host,
                     headers: this.getAllResponseHeaders(),
                     timestamp: Date.now(),
+                    hostname: window.location.hostname,
+                    pathname: window.location.pathname,
+                    appKey: localStorage.getItem("Appkey")
                 };
+
+
+
+
 
                 if (typeof xhrData !== 'undefined') {
                     if (xhrData.url !== hostUrl) {
