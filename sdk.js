@@ -1,6 +1,3 @@
-var count = 0;
-var hostUrl = "https://zt-central-vm.zta-gateway.com/SDKLogs";
-var ipurl = "https://api64.ipify.org?format=json"
 const SDK = {
     init() {
         this.getIP();
@@ -24,7 +21,7 @@ const SDK = {
         }
     },
     getIP() {
-        fetch(ipurl)
+        fetch("https://api64.ipify.org?format=json")
             .then(response => response.json())
             .then(data => {
                 console.log(`Client IP address: ${data.ip}`);
@@ -49,7 +46,7 @@ const SDK = {
 
         var data = JSON.stringify(browserDetails);
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', hostUrl, true);
+        xhr.open('POST', "https://zt-central-vm.zta-gateway.com/SDKLogs", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -86,10 +83,10 @@ const SDK = {
                 };
 
                 if (typeof xhrData !== 'undefined') {
-                    if (xhrData.url !== hostUrl) {
+                    if (xhrData.url !== "https://zt-central-vm.zta-gateway.com/SDKLogs") {
 
                         var xhr = new XMLHttpRequest();
-                        xhr.open('POST', hostUrl, true);
+                        xhr.open('POST', "https://zt-central-vm.zta-gateway.com/SDKLogs", true);
                         xhr.setRequestHeader('Content-Type', 'application/json');
 
                         xhr.onreadystatechange = function () {
