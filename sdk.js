@@ -1,6 +1,5 @@
 // SDK.js
 
-//https://zt-central-vm.zta-gateway.com/AppLogs?pageNo=1&pageSize=10
 var count = 0;
 var hostUrl="https://zt-central-vm.zta-gateway.com/SDKLogs";
 var ipurl = "https://api64.ipify.org?format=json"
@@ -11,12 +10,12 @@ const SDK = {
         this.collectBrowserDetails();
         this.interceptXHRRequests();
 
-        // var scriptElement = document.currentScript;
-        // // Extract the id parameter from the src attribute
-        // var src = scriptElement.src;
-        // var url = new URL(src);
-        // var id = url.searchParams.get('scr');
-        // console.log(id); // Output: 123
+        var scriptElement = document.currentScript;
+        // Extract the id parameter from the src attribute
+        var src = scriptElement.src;
+        var url = new URL(src);
+        debugger;
+      
     },
 
     getIP() {
