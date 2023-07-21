@@ -1,5 +1,3 @@
-// SDK.js
-
 var count = 0;
 var hostUrl = "https://zt-central-vm.zta-gateway.com/SDKLogs";
 var ipurl = "https://api64.ipify.org?format=json"
@@ -65,7 +63,6 @@ const SDK = {
             }
         };
         xhr.send(JSON.stringify(data));
-
         // Send browserDetails to your server or perform other actions
     },
 
@@ -88,10 +85,6 @@ const SDK = {
                     appKey: localStorage.getItem("Appkey")
                 };
 
-
-
-
-
                 if (typeof xhrData !== 'undefined') {
                     if (xhrData.url !== hostUrl) {
 
@@ -112,7 +105,6 @@ const SDK = {
                         };
                         xhr.send(JSON.stringify(JSON.stringify(xhrData)));
                     }
-
                 }
                 // Send xhrData to your server or perform other actions
                 return originalOpen.apply(this, arguments);
