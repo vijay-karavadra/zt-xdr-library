@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Sample Page</title>
+</head>
+
+<body>
+  <h1>Test Page</h1>
+  <br>
+  <button id="runtest">Run Test</button>
+
+  <button id="runtest2">Run Test 200 times</button>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <div id="content" style="display: none;"></div>
+
+  <script>
+
+    $(document).ready(function () {
+
+      $("#runtest").click(function () {
+        $("#content").load("http://137.135.102.227:2028", function (responseTxt, statusTxt, xhr) {
+          if (statusTxt == "success") {
+            console.log("HTML page loaded successfully!");
+          } else if (statusTxt == "error") {
+            console.log("Error loading the HTML page!");
+          }
+        });
+
+
+      });
+
+
+      $("#runtest2").click(function () {
+        for (let index = 0; index < 200; index++) {
+          $("#content").load("http://137.135.102.227:2028", function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "success") {
+              console.log("HTML page loaded successfully!");
+            } else if (statusTxt == "error") {
+              console.log("Error loading the HTML page!");
+            }
+          });
+        }
+
+      });
+
+
+    });
+
+  </script>
+
+
+</body>
+
+</html>
