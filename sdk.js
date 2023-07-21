@@ -1,4 +1,4 @@
-const SDK = {
+var SDK = {
     init() {
         this.getIP();
         this.getAppKey();
