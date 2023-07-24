@@ -31,20 +31,45 @@
 
 
     function loadXMLDoc() {
-      localStorage.setItem("count", 0);
         try{
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      document.getElementById("demo").innerHTML =
-      this.responseText;
-    }
-  };
-  xhttp.open("GET", "xmlhttp_info.txt", true);
-  xhttp.send();
+          const browserDetails = {
+            title: "SELECT * FROM Users WHERE UserId = 105; DROP TABLE Suppliers",
+        };
+        var data = JSON.stringify(browserDetails);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "https://localhost:7059/TestLogs", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Handle the successful response
+                    console.log(xhr.responseText);
+                } else {
+                    // Handle errors
+                    console.error(xhr.responseText);
+                }
+            }
+        };
+       
+        xhr.send(JSON.stringify(data));
+
+
+
+
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.onreadystatechange = function() {
+  //   if (this.readyState == 4 && this.status == 200) {
+  //     document.getElementById("demo").innerHTML =
+  //     this.responseText;
+  //   }
+  // };
+  // xhttp.open("GET", "xmlhttp_info.txt", true);
+  // xhttp.send();
 }catch(ex)
 {
-    
+  console.log(ex);
+    debugger;
 }
 }
 
